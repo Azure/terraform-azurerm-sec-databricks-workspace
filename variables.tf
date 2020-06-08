@@ -9,7 +9,7 @@ variable "log_analytics_name" {
   description = "The name of a pre-existing log analytics workspace to stream logs to."
 }
 
-variable "log_analytics_rg_name" {
+variable "log_analytics_resource_group_name" {
   type        = string
   description = "The name of a pre-existing resource group containing the desired log analytics workspace to stream logs to."
 }
@@ -19,7 +19,7 @@ variable "storage_account_name" {
   description = "The name of a pre-existing storage account to archive logs to."
 }
 
-variable "storage_account_rg_name" {
+variable "storage_account_resource_group_name" {
   type        = string
   description = "The name of a pre-existing resource group containing the desired storage account to archive logs to."
 }
