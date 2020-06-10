@@ -3,12 +3,6 @@ provider "azurerm" {
   features {}
 }
 
-resource "null_resource" "module_depends_on" {
-  triggers = {
-    value = "${length(var.module_depends_on)}"
-  }
-}
-
 locals {
   unique_name_stub = substr(module.naming.unique-seed, 0, 5)
 }
@@ -30,7 +24,7 @@ resource "azurerm_log_analytics_workspace" "test_la" {
 }
 
 resource "azurerm_storage_account" "test_sa" {
-  name                     = "${module.naming.resource_group.slug}-${module.naming.storage_account.slug}-min-test-${local.unique_name_stub}"
+  name                     = module.naming.storage_account.name_unique
   resource_group_name      = azurerm_resource_group.test_group.name
   location                 = azurerm_resource_group.test_group.location
   account_tier             = "Standard"
@@ -47,5 +41,6 @@ module "terraform-azurerm-databricks-workspace" {
   prefix                              = [local.unique_name_stub]
   suffix                              = [local.unique_name_stub]
   databricks_workspace_sku            = "premium"
-  diagnostics_script_path             = "../scripts/diagnostics.sh"
+  diagnostics_script_path             = "../../scripts/diagnostics.sh"
+  module_depends_on                   = ["module.azurerm_log_analytics_workspace.test_la"]
 }

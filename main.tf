@@ -3,6 +3,12 @@ provider "azurerm" {
   features {}
 }
 
+resource "null_resource" "module_depends_on" {
+  triggers = {
+    value = "${length(var.module_depends_on)}"
+  }
+}
+
 locals {
   resource_group_name        = data.azurerm_resource_group.main.name
   log_analytics_workspace_id = data.azurerm_log_analytics_workspace.main.id
