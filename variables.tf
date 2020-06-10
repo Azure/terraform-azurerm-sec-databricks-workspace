@@ -48,3 +48,7 @@ variable "diagnostics_script_path" {
   description = "Path to a local script to execute for Databricks diagnostic settings (audit log) setup."
   default     = "./scripts/diagnostics.sh"
 }
+
+variable "module_depends_on" {
+  default = [""]
+}

@@ -24,7 +24,7 @@ resource "azurerm_log_analytics_workspace" "test_la" {
 }
 
 resource "azurerm_storage_account" "test_sa" {
-  name                     = "${module.naming.resource_group.slug}-${module.naming.storage_account.slug}-min-test-${local.unique_name_stub}"
+  name                     = module.naming.storage_account.name_unique
   resource_group_name      = azurerm_resource_group.test_group.name
   location                 = azurerm_resource_group.test_group.location
   account_tier             = "Standard"
