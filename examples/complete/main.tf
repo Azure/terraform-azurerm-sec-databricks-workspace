@@ -3,6 +3,12 @@ provider "azurerm" {
   features {}
 }
 
+resource "null_resource" "module_depends_on" {
+  triggers = {
+    value = "${length(var.module_depends_on)}"
+  }
+}
+
 locals {
   unique_name_stub = substr(module.naming.unique-seed, 0, 5)
 }
