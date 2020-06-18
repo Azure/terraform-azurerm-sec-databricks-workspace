@@ -105,5 +105,6 @@ module "terraform-azurerm-databricks-workspace" {
   suffix                                          = [local.unique_name_stub]
   databricks_workspace_sku                        = "premium"
   diagnostics_script_path                         = "../../scripts/diagnostics.sh"
+  no_public_ip                                    = false
   module_depends_on                               = ["azurerm_subnet.private_snet, azurerm_subnet.public_snet"]
 }

@@ -69,6 +69,13 @@ variable "diagnostics_script_path" {
   default     = "./scripts/diagnostics.sh"
 }
 
+variable "no_public_ip" {
+  type        = bool
+  description = "A boolean determining whether or not to initialise the Azure Databricks Workspace with a public IP address."
+  #NOTE: Default to false here as not every Azure Subscription is by default capable of instantiating Databricks Workspaces with no public IP address. 
+  default     = false
+}
+
 variable "module_depends_on" {
   default = [""]
 }

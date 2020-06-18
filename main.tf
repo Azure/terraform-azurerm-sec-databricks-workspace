@@ -25,6 +25,7 @@ resource "azurerm_databricks_workspace" "main" {
   sku                 = var.databricks_workspace_sku
 
   custom_parameters {
+    no_public_ip        = var.no_public_ip
     virtual_network_id  = local.databricks_vnet_id
     public_subnet_name  = local.databricks_public_snet_name
     private_subnet_name = local.databricks_private_snet_name
