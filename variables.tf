@@ -66,7 +66,7 @@ variable "databricks_workspace_sku" {
 variable "diagnostics_script_path" {
   type        = string
   description = "Path to a local script to execute for Databricks diagnostic settings (audit log) setup."
-  default     = "./scripts/diagnostics.sh"
+  default     = ""
 }
 
 variable "no_public_ip" {

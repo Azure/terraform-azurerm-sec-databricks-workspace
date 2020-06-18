@@ -10,6 +10,7 @@ locals {
   databricks_public_snet_name    = data.azurerm_subnet.public.name
   log_analytics_workspace_id     = data.azurerm_log_analytics_workspace.main.id
   diagnostics_storage_account_id = data.azurerm_storage_account.main.id
+  diagnostics_script_path        = var.diagnostics_script_path == "" ? "${path.module}/scripts/diagnostics.sh" : var.diagnostics_script_path
 }
 
 module "azurerm_naming" {
@@ -38,7 +39,7 @@ resource "null_resource" "main" {
     diagnostics_storage_account_id = local.diagnostics_storage_account_id
   }
   provisioner "local-exec" {
-    command = "${var.diagnostics_script_path} ${local.resource_group.name} ${local.log_analytics_workspace_id} ${local.diagnostics_storage_account_id} ${azurerm_databricks_workspace.main.id}"
+    command = "${local.diagnostics_script_path} ${local.resource_group_name} ${local.log_analytics_workspace_id} ${local.storage_account_id} ${azurerm_databricks_workspace.main.id}"
   }
 }
 
