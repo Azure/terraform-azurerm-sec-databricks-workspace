@@ -39,7 +39,7 @@ resource "null_resource" "main" {
     diagnostics_storage_account_id = local.diagnostics_storage_account_id
   }
   provisioner "local-exec" {
-    command = "${local.diagnostics_script_path} ${local.resource_group_name} ${local.log_analytics_workspace_id} ${local.storage_account_id} ${azurerm_databricks_workspace.main.id}"
+    command = "${local.diagnostics_script_path} ${local.resource_group.name} ${local.log_analytics_workspace_id} ${local.diagnostics_storage_account_id} ${azurerm_databricks_workspace.main.id}"
   }
 }
 
