@@ -31,6 +31,8 @@ resource "azurerm_databricks_workspace" "main" {
     public_subnet_name  = local.databricks_public_snet_name
     private_subnet_name = local.databricks_private_snet_name
   }
+
+  depends_on = [null_resource.module_depends_on]
 }
 
 resource "null_resource" "main" {
@@ -41,11 +43,13 @@ resource "null_resource" "main" {
   provisioner "local-exec" {
     command = "${local.diagnostics_script_path} ${local.resource_group.name} ${local.log_analytics_workspace_id} ${local.diagnostics_storage_account_id} ${azurerm_databricks_workspace.main.id}"
   }
+
+  depends_on = [azurerm_databricks_workspace.main]
 }
 
 resource "null_resource" "module_depends_on" {
   triggers = {
-    value = "${length(var.module_depends_on)}"
+    value = length(var.module_depends_on)
   }
 }
 
