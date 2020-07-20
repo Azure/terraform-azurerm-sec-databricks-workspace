@@ -1,3 +1,10 @@
+# This is an ALPHA stage module
+
+This module is not suitable for production.
+
+There is no guarantee.
+
+This module is only a demo code.
 
 # Contributing
 
