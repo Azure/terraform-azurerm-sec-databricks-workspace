@@ -75,7 +75,3 @@ variable "no_public_ip" {
   #NOTE: Default to false here as not every Azure Subscription is by default capable of instantiating Databricks Workspaces with no public IP address. 
   default     = false
 }
-
-variable "module_depends_on" {
-  default = [""]
-}
